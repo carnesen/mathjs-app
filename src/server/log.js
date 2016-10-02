@@ -1,10 +1,7 @@
-import { createLogger } from '@carnesen/util'
+import log from '../shared/log'
 
-import { name } from '../../package.json'
-
-const options = { console: true }
-if (process.env.NODE_ENV === 'test') {
-  options.level = 'none'
+if (process.env.NODE_ENV !== 'test' && !log.debugLogger.enabled) {
+  log.register(log.consoleLogger)
 }
 
-export default createLogger(name, options)
+export default log

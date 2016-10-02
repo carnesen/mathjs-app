@@ -6,6 +6,6 @@ import { port } from './constants'
 
 const httpServer = http.createServer(app)
 
-httpServer.on('listening', () => log.info('Listening on port ' + port))
+httpServer.on('listening', () => log.info(`Listening on port ${port}`))
 
 export default httpServer
