@@ -4,6 +4,6 @@ import log from './log'
 
 const store = createStore(addActionListenerEnhancer)
 
-store.addActionListener(action => log.info(action))
+store.addActionListener(action => log.debug(action))
 
 export default store

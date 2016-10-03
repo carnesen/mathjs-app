@@ -1,6 +1,6 @@
 import request from 'supertest-as-promised'
 
-import calculations from '../../shared/calculations'
+import { calculate } from '../../shared/util'
 import app from '../app'
 
 describe('app', function () {
@@ -18,14 +18,9 @@ describe('app', function () {
     return request(app).post('/api/calculation').expect(400)
   })
 
-  it('POST /api/calculation returns 204 (no content) if expression', function () {
-    const expression = '4+4'
-    return request(app).post('/api/calculation').send({ expression })
-      .expect(204)
-      .then(() => {
-        const calculation = calculations.value[0]
-        calculation.expression.should.equal(expression)
-      })
+  it('POST /api/calculation returns 204 (no content) if valid calculation', function () {
+    const calculation = calculate('4+4')
+    return request(app).post('/api/calculation').send(calculation).expect(204)
   })
 
   it('404 on anything else', function () {
