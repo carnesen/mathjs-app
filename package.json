@@ -4,16 +4,16 @@
   "version": "0.0.0",
   "main": "lib/index.js",
   "scripts": {
-    "build:browser:min": "cross-env NODE_ENV=production npm run build:browser -- --bail",
     "build:browser": "cross-env BABEL_ENV=browser webpack",
+    "build:browser:min": "cross-env NODE_ENV=production npm run build:browser -- --bail",
     "build:browser:watch": "npm run build:browser -- --watch",
     "build:server": "cross-env BABEL_ENV=server babel src --out-dir lib --ignore *-test.js,browser",
     "build:server:watch": "npm run build:server -- --watch",
-    "build": "npm run clean && npm run build:server",
+    "build": "npm run clean && npm run build:server && npm run build:browser:min",
     "clean": "rimraf lib dist",
     "lint": "eslint src webpack.config.babel.js",
     "lint:fix": "npm run lint -- --fix",
-    "start": "cross-env NODE_ENV=production node lib/server/start.js",
+    "start": "node lib/server/start.js",
     "start:dev": "cross-env DEBUG=@carnesen/* nodemon --watch lib lib/server/start.js",
     "test": "npm run lint && npm run test:server && npm run test:browser",
     "test:browser": "cross-env BABEL_ENV=browser NODE_ENV=test mocha --require .before-browser-tests.js src/browser/**/*-test.js src/shared/**/*-test.js",
@@ -31,8 +31,7 @@
     "mathjs": "3.5.3",
     "morgan": "1.7.0",
     "socket.io": "1.4.8",
-    "uuid": "2.0.3",
-    "webpack": "1.13.2"
+    "uuid": "2.0.3"
   },
   "devDependencies": {
     "babel-cli": "6.16.0",
@@ -61,7 +60,7 @@
     "socket.io-client": "1.4.8",
     "supertest": "2.0.0",
     "supertest-as-promised": "4.0.0",
-    "webpack-node-externals": "1.4.3",
+    "webpack": "1.13.2",
     "whatwg-fetch": "1.0.0"
   },
   "files": [
@@ -83,14 +82,5 @@
     "url": "https://github.com/carnesen/mathjs-app/issues"
   },
   "homepage": "https://github.com/carnesen/mathjs-app",
-  "license": "MIT",
-  "standard": {
-    "globals": [
-      "describe",
-      "it"
-    ],
-    "plugins": [
-      "react"
-    ]
-  }
+  "license": "MIT"
 }
