@@ -1,18 +1,28 @@
 import React from 'react'
+import { List, ListItem } from 'material-ui/List'
 
-function CalculationsTable (calculations) {
+import expressionSlice from './expression-slice'
+
+export default function CalculationsList ({title, calculations}) {
   return (
-    <table>
-      { calculations.map(calculation => (
-        <tr>
-          <td>{calculation.expression}</td>
-          <td>{calculation.evaluatedExpression}</td>
-        </tr>
-      )) }
-    </table>
+    <div>
+      <h2>{ title }</h2>
+      <List>{
+        calculations.map(({ id, expression, evaluatedExpression }) => {
+          const primaryText = `${expression} → ${evaluatedExpression}`
+          const clickHandler = () => expressionSlice.setValue(expression)
+          return (<ListItem primaryText={primaryText} key={id} onClick={clickHandler} />)
+        })
+      }</List>
+    </div>
   )
 }
 
-CalculationsTable.propTypes = {
-  calculations: React.PropTypes.array.isRequired
+CalculationsList.propTypes = {
+  title: React.PropTypes.string.isRequired,
+  calculations: React.PropTypes.arrayOf(React.PropTypes.shape({
+    id: React.PropTypes.string,
+    expression: React.PropTypes.string,
+    evaluatedExpression: React.PropTypes.string
+  })).isRequired
 }

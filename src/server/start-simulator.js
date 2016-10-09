@@ -1,23 +1,23 @@
 import { delay } from '@carnesen/util'
 
 import log from './log'
-import { calculate, exampleExpressions } from '../shared/util'
-import calculations from '../shared/calculations'
+import { exampleCalculations } from '../shared/util'
+import allCalculationsSlice from '../shared/all-calculations-slice'
 
-export function* makeExampleExpressionGenerator () {
+export function* calculationGeneratorFunction () {
   while (true) {
-    yield * exampleExpressions
+    yield * exampleCalculations
   }
 }
 
 export default function (averageInterval) {
-  averageInterval = averageInterval || 5000
+  averageInterval = averageInterval || 10000
   log.info('Started calculation simulator')
-  const generator = makeExampleExpressionGenerator()
+  const generator = calculationGeneratorFunction()
   let stopped = false
   async function simulate () {
     while (!stopped) { // eslint-disable-line no-unmodified-loop-condition
-      calculations.unshift(calculate(generator.next().value))
+      allCalculationsSlice.unshift(generator.next().value)
       await delay(averageInterval * 2 * Math.random())
     }
   }

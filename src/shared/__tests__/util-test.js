@@ -1,4 +1,5 @@
-import { exampleExpressions, isValidCalculation, calculate, fixedLengthArrayReducer, MAX_LENGTH } from '../util'
+import { exampleCalculations, isValidCalculation, calculate, fixedLengthArrayReducer, MAX_LENGTH }
+  from '../util'
 
 describe('util', function () {
   it('calculate does the right thing on a bad expression', function () {
@@ -16,8 +17,7 @@ describe('util', function () {
   })
 
   it('calculate returns a valid calculation on all example expressions', function () {
-    exampleExpressions.forEach(expression => {
-      const calculation = calculate(expression)
+    exampleCalculations.forEach(calculation => {
       isValidCalculation(calculation).should.equal(true)
     })
   })

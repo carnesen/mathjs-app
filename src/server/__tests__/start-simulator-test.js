@@ -1,18 +1,18 @@
 import { delay } from '@carnesen/util'
 
 import startSimulator from '../start-simulator'
-import calculations from '../../shared/calculations'
+import allCalculationsSlice from '../../shared/all-calculations-slice'
 
-describe('app', function () {
+describe('calculation simulator', function () {
   it('starts and stops', async function () {
-    calculations.setValue([])
-    const stop = startSimulator(0)
-    calculations.value.length.should.equal(1)
+    allCalculationsSlice.setValue([])
+    const stop = startSimulator(1)
+    allCalculationsSlice.value.length.should.equal(1)
     await delay(20)
     stop()
-    calculations.value.length.should.be.above(1)
-    const zeroethCalculation = calculations.value[0]
+    allCalculationsSlice.value.length.should.be.above(1)
+    const zeroethCalculation = allCalculationsSlice.value[0]
     await delay(20)
-    calculations.value[0].should.equal(zeroethCalculation)
+    allCalculationsSlice.value[0].should.equal(zeroethCalculation)
   })
 })

@@ -15,8 +15,9 @@
     "lint:fix": "npm run lint -- --fix",
     "start": "cross-env NODE_ENV=production node lib/server/start.js",
     "start:dev": "cross-env DEBUG=@carnesen/* nodemon --watch lib lib/server/start.js",
-    "test": "npm run lint && npm run test:server",
-    "test:server": "cross-env BABEL_ENV=server NODE_ENV=test mocha --compilers js:babel-register src/server/**/*-test.js src/shared/**/*-test.js"
+    "test": "npm run lint && npm run test:server && npm run test:browser",
+    "test:browser": "cross-env BABEL_ENV=browser NODE_ENV=test mocha --require .before-browser-tests.js src/browser/**/*-test.js src/shared/**/*-test.js",
+    "test:server": "cross-env BABEL_ENV=server NODE_ENV=test mocha --require .before-server-tests.js src/server/**/*-test.js src/shared/**/*-test.js"
   },
   "dependencies": {
     "@carnesen/checks": "0.0.1",
@@ -30,6 +31,7 @@
     "mathjs": "3.5.3",
     "morgan": "1.7.0",
     "socket.io": "1.4.8",
+    "uuid": "2.0.3",
     "webpack": "1.13.2"
   },
   "devDependencies": {
@@ -43,6 +45,7 @@
     "babel-preset-react": "6.16.0",
     "babel-register": "6.16.3",
     "chai": "3.5.0",
+    "enzyme": "2.4.1",
     "eslint": "3.7.0",
     "eslint-config-carnesen": "1.0.4",
     "json-loader": "0.5.4",
@@ -50,6 +53,7 @@
     "mocha": "3.1.0",
     "nodemon": "1.10.2",
     "react": "15.3.2",
+    "react-addons-test-utils": "15.3.2",
     "react-dom": "15.3.2",
     "react-redux": "4.4.5",
     "react-tap-event-plugin": "1.0.0",

@@ -3,7 +3,7 @@ import store from './store'
 import { fixedLengthArrayReducer } from './util'
 
 export default store.addSlice({
-  name: 'calculations',
+  name: 'all calculations',
   initialValue: [],
   reducerMap: {
     unshift: fixedLengthArrayReducer

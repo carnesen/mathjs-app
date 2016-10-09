@@ -5,7 +5,7 @@ import morgan from 'morgan'
 import bodyParser from 'body-parser'
 
 import log from './log'
-import calculations from '../shared/calculations'
+import allCalculationsSlice from '../shared/all-calculations-slice'
 import { isValidCalculation } from '../shared/util'
 
 const app = express()
@@ -22,7 +22,7 @@ app.post('/api/calculation', (req, res) => {
   const calculation = req.body
   if (isValidCalculation(calculation)) {
     res.status(204).send() // no content
-    calculations.unshift(calculation)
+    allCalculationsSlice.unshift(calculation)
   } else {
     res.status(400).send({ error: `Bad calculation "${calculation}"` })
   }

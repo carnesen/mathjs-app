@@ -1,23 +1,15 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import TextField from 'material-ui/TextField';
-import store from '../shared/store'
+import TextField from 'material-ui/TextField'
+
 import { calculate } from '../shared/util'
-import calculations from './calculations'
+import myCalculationsSlice from './my-calculations-slice'
+import expressionSlice from './expression-slice'
 
-const expressionSlice = store.addSlice({
-  name: 'expression',
-  initialValue: ''
-})
-
-// const messagesSlice = store.addSlice({
-//   name: 'messages',
-//   initialValue: ''
-// })
-
-export default function () {
+export default function ExpressionForm () {
   function mapStateToProps () {
     return {
+      ref: component => component && component.focus(),
       value: expressionSlice.value,
       onChange: event => expressionSlice.setValue(event.target.value)
     }
@@ -28,7 +20,7 @@ export default function () {
   function handleSubmit (event) {
     event.preventDefault()
     const calculation = calculate(expressionSlice.value)
-    calculations.unshift(calculation)
+    myCalculationsSlice.unshift(calculation)
     fetch('/api/calculation', {
       method: 'POST',
       headers: {
@@ -41,9 +33,9 @@ export default function () {
 
   return (
     <div>
+      <h2>Calculate</h2>
       <form onSubmit={handleSubmit}>
-        <ConnectedTextField />
-        <input type='submit' />
+        <ConnectedTextField name='expression' />
       </form>
     </div>
   )
