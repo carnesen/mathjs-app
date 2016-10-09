@@ -65,8 +65,12 @@
     "whatwg-fetch": "1.0.0"
   },
   "files": [
+    "dist",
     "lib"
   ],
+  "engines": {
+    "node": "~6.6"
+  },
   "author": {
     "name": "Chris Arnesen",
     "email": "chris.arnesen@gmail.com"
