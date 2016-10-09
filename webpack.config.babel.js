@@ -18,7 +18,11 @@ if (production) {
 
 module.exports = [
   {
-    entry: ['babel-polyfill', path.join(__dirname, 'src', 'browser', 'index.js')],
+    entry: [
+      'babel-polyfill',
+      'whatwg-fetch',
+      path.join(__dirname, 'src', 'browser', 'index.js')
+    ],
     output: {
       path: path.join(__dirname, 'dist'),
       filename: `bundle${extension}`
@@ -31,6 +35,7 @@ module.exports = [
           loader: 'babel-loader',
           exclude: /node_modules/
         },
+        { test: /\.json$/, loader: 'json-loader' },
         { test: /\.css$/, loader: 'style-loader!css-loader' }
       ]
     }

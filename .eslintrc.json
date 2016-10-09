@@ -1,0 +1,6 @@
+{
+  "extends": [ "carnesen" ],
+  "env": {
+    "browser": true
+  }
+}
