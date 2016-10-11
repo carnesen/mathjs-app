@@ -6,6 +6,6 @@ import CalculationsList from '../calculations-list'
 
 describe('<CalculationsList />', function () {
   it('renders', function () {
-    shallow(<CalculationsList calculations={exampleCalculations} title='foo'/>)
+    shallow(<CalculationsList calculations={exampleCalculations} title='foo' />)
   })
 })

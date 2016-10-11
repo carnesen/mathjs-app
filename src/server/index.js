@@ -3,5 +3,7 @@ import './socket-server'
 import { port } from './constants'
 import startSimulator from './start-simulator'
 
-httpServer.listen(port)
-startSimulator()
+export function start () {
+  httpServer.listen(port)
+  startSimulator()
+}
