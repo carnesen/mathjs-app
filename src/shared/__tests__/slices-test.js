@@ -1,4 +1,4 @@
-import allCalculationsSlice from '../all-calculations-slice'
+import { allCalculationsSlice } from '../slices'
 
 describe('calculations', function () {
   it('does the right thing', function () {

@@ -1,9 +1,7 @@
-import httpServer from './http-server'
-import './socket-server'
-import { port } from './constants'
-import startSimulator from './start-simulator'
+import { start as startServer } from './server'
+import { start as startSimulator } from './simulator'
 
 export function start () {
-  httpServer.listen(port)
+  startServer()
   startSimulator()
 }

@@ -1,7 +1,7 @@
 import request from 'supertest-as-promised'
 
 import { calculate } from '../../shared/util'
-import app from '../app'
+import app, { iconNames } from '../app'
 
 describe('app', function () {
   it('GET / serves index.html', function () {
@@ -13,6 +13,10 @@ describe('app', function () {
   it('GET /bundle.js', function () {
     return request(app).get('/bundle.js').expect(200)
   })
+
+  iconNames.forEach(iconName => it(`GET ${iconName}.svg`, function () {
+    return request(app).get(`/${iconName}.svg`).expect(200)
+  }))
 
   it('POST /api/calculation responds 400 if no expression', function () {
     return request(app).post('/api/calculation').expect(400)

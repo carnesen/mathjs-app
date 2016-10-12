@@ -2,7 +2,7 @@ import store from './store'
 
 import { fixedLengthArrayReducer } from './util'
 
-export default store.addSlice({
+export const allCalculationsSlice = store.addSlice({
   name: 'all calculations',
   initialValue: [],
   reducerMap: {

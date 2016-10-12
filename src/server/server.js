@@ -1,10 +1,15 @@
+import http from 'http'
 import socketIo from 'socket.io'
 
-import store from '../shared/store'
-import httpServer from './http-server'
+import app from './app'
 import log from './log'
+import store from '../shared/store'
 
+const port = Number(process.env.PORT) || 3000
+const httpServer = http.createServer(app)
 const socketServer = socketIo(httpServer)
+
+httpServer.on('listening', () => log.info(`Listening on port ${port}`))
 
 socketServer.on('connection', socket => {
   log.info(`Socket client connected ${socket.id}`)
@@ -16,4 +21,6 @@ socketServer.on('connection', socket => {
 
 store.addActionListener(action => socketServer.emit('action', action))
 
-export default socketServer
+export function start () {
+  httpServer.listen(port)
+}

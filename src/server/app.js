@@ -3,9 +3,10 @@ import path from 'path'
 import express from 'express'
 import morgan from 'morgan'
 import bodyParser from 'body-parser'
+import octicons from 'octicons'
 
 import log from './log'
-import allCalculationsSlice from '../shared/all-calculations-slice'
+import { allCalculationsSlice } from '../shared/slices'
 import { isValidCalculation } from '../shared/util'
 
 const app = express()
@@ -17,6 +18,15 @@ app.use(bodyParser.json())
 const topDir = path.join(__dirname, '..', '..')
 app.use(express.static(path.join(topDir, 'public')))
 app.use(express.static(path.join(topDir, 'dist')))
+
+export const iconNames = ['mark-github', 'question']
+
+iconNames.forEach(iconName =>
+  app.get(`/${iconName}.svg`, (req, res) => {
+    res.header('Content-Type', 'image/svg+xml')
+    res.send(octicons.svg[iconName])
+  })
+)
 
 app.post('/api/calculation', (req, res) => {
   const calculation = req.body

@@ -20,7 +20,7 @@ export function calculate (expression) {
 const exampleExpressions = [
   'det([-1, 2; 3, 1])',
   'foo',
-  'e ^ (i pi)',
+  '(e ^ (i pi/2)).im',
   '4+4',
   'sin(45 deg) ^ 2',
   '2 ^ 10',

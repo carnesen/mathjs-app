@@ -3,14 +3,16 @@ import { connect } from 'react-redux'
 import TextField from 'material-ui/TextField'
 
 import { calculate } from '../shared/util'
-import myCalculationsSlice from './my-calculations-slice'
-import expressionSlice from './expression-slice'
+import { expressionSlice, myCalculationsSlice } from './slices'
 
 export default function ExpressionForm () {
   function mapStateToProps () {
     return {
       ref: component => component && component.focus(),
       value: expressionSlice.value,
+      fullWidth: true,
+      floatingLabelText: 'Calculate',
+      hintText: '4+4',
       onChange: event => expressionSlice.setValue(event.target.value)
     }
   }
@@ -19,7 +21,9 @@ export default function ExpressionForm () {
 
   function handleSubmit (event) {
     event.preventDefault()
-    const calculation = calculate(expressionSlice.value)
+    const expression = expressionSlice.value
+    if (!expression) return
+    const calculation = calculate(expression)
     myCalculationsSlice.unshift(calculation)
     fetch('/api/calculation', {
       method: 'POST',
@@ -33,9 +37,10 @@ export default function ExpressionForm () {
 
   return (
     <div>
-      <h2>Calculate</h2>
       <form onSubmit={handleSubmit}>
-        <ConnectedTextField name='expression' />
+        <div style={{ width: '30%', margin: '0 auto' }}>
+          <ConnectedTextField name='expression' />
+        </div>
       </form>
     </div>
   )

@@ -1,8 +1,8 @@
 import { delay } from '@carnesen/util'
 
 import log from './log'
-import { exampleCalculations } from '../shared/util'
-import allCalculationsSlice from '../shared/all-calculations-slice'
+import { exampleCalculations, MAX_LENGTH } from '../shared/util'
+import { allCalculationsSlice } from '../shared/slices'
 
 export function* calculationGeneratorFunction () {
   while (true) {
@@ -10,10 +10,12 @@ export function* calculationGeneratorFunction () {
   }
 }
 
-export default function (averageInterval) {
+export function start (averageInterval) {
   averageInterval = averageInterval || 10000
   log.info('Started calculation simulator')
   const generator = calculationGeneratorFunction()
+  const simulateOne = () => allCalculationsSlice.unshift(generator.next().value)
+  for (let i = 0; i < MAX_LENGTH; i++) simulateOne()
   let stopped = false
   async function simulate () {
     while (!stopped) { // eslint-disable-line no-unmodified-loop-condition

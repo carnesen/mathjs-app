@@ -1,16 +1,19 @@
 import React from 'react'
+
+import HelpDialog from './help-dialog'
+import PageHeader from './page-header'
 import ExpressionForm from './expression-form'
-import MyCalculationsList from './my-calculations-list'
-import AllCalculationsList from './all-calculations-list'
+import { AllCalculationsList, MyCalculationsList } from './calculations-lists'
 
 export default function RootComponent () {
   return (
     <div>
-      <h1>Mathjs calculator</h1>
-      <div style={{ display: 'flex' }}>
-        <MyCalculationsList />
-        <ExpressionForm />
+      <PageHeader />
+      <HelpDialog />
+      <ExpressionForm />
+      <div style={{ display: 'flex', justifyContent: 'center' }}>
         <AllCalculationsList />
+        <MyCalculationsList />
       </div>
     </div>
   )
