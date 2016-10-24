@@ -31,7 +31,7 @@
     "mathjs": "3.5.3",
     "morgan": "1.7.0",
     "octicons": "4.4.0",
-    "socket.io": "1.5.0",
+    "socket.io": "1.5.1",
     "uuid": "2.0.3"
   },
   "devDependencies": {
