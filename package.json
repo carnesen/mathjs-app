@@ -61,7 +61,7 @@
     "socket.io-client": "1.5.0",
     "supertest": "2.0.0",
     "supertest-as-promised": "4.0.0",
-    "webpack": "1.13.2",
+    "webpack": "1.13.3",
     "whatwg-fetch": "1.0.0"
   },
   "files": [
