@@ -30,7 +30,7 @@
     "express": "4.14.0",
     "mathjs": "3.5.3",
     "morgan": "1.7.0",
-    "octicons": "4.4.0",
+    "octicons": "5.0.0",
     "socket.io": "1.5.0",
     "uuid": "2.0.3"
   },
