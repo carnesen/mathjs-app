@@ -1,26 +1,51 @@
-import http from 'http'
-import socketIo from 'socket.io'
+import path from 'path'
+import octicons from 'octicons'
+import statuses from 'statuses'
+import createError from 'http-errors'
 
-import app from './app'
-import log from './log'
+import { WebServer } from '@carnesen/web-server'
+
+import { allCalculationsSlice } from '../shared/slices'
+import { isValidCalculation } from '../shared/util'
+
 import store from '../shared/store'
 
-const port = Number(process.env.PORT) || 3000
-const httpServer = http.createServer(app)
-const socketServer = socketIo(httpServer)
+const server = new WebServer()
 
-httpServer.on('listening', () => log.info(`Listening on port ${port}`))
+const topDir = path.join(__dirname, '..', '..')
+server.serveStatic({ root: path.join(topDir, 'public') })
+server.serveStatic({ root: path.join(topDir, 'dist') })
 
-socketServer.on('connection', socket => {
-  log.info(`Socket client connected ${socket.id}`)
+export const iconNames = ['mark-github', 'question']
+const router = server.mountRouter()
+
+iconNames.forEach(iconName =>
+  router.get(`/${iconName}.svg`, (ctx, next) => {
+    ctx.type = 'image/svg+xml'
+    ctx.status = statuses('ok')
+    ctx.body = octicons[iconName].toSVG({ xmlns: "http://www.w3.org/2000/svg" })
+    next()
+  })
+)
+
+router.post('/api/calculation', async (ctx, next) => {
+  const calculation = ctx.request.body
+  if (isValidCalculation(calculation)) {
+    ctx.status = statuses('no content')
+    allCalculationsSlice.unshift(calculation)
+    next()
+  } else {
+    throw new createError.BadRequest(`Bad calculation "${JSON.stringify(calculation)}"`)
+  }
+})
+
+server.sockets.on('connection', socket => {
   store.slices.forEach(slice => {
     const action = slice.actionCreators.setValue(slice.value)
     socket.emit('action', action)
   })
 })
 
-store.addActionListener(action => socketServer.emit('action', action))
+store.addActionListener(action => server.sockets.emit('action', action))
 
-export function start () {
-  httpServer.listen(port)
-}
+export default server

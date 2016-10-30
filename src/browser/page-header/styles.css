@@ -1,0 +1,17 @@
+.wrapper {
+  position: absolute;
+  display: flex;
+  top: 0;
+  right: 0;
+  width: 10%;
+}
+
+.icon {
+  width: 40%;
+  height: auto;
+  padding: 5%;
+}
+
+.img {
+  width: 100%;
+}

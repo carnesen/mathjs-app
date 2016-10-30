@@ -2,8 +2,9 @@ import React from 'react'
 import { connect } from 'react-redux'
 import TextField from 'material-ui/TextField'
 
-import { calculate } from '../shared/util'
-import { expressionSlice, myCalculationsSlice } from './slices'
+import { calculate } from '../../shared/util'
+import { expressionSlice, myCalculationsSlice } from '../slices'
+import styles from './styles.css'
 
 export default function ExpressionForm () {
   function mapStateToProps () {
@@ -38,7 +39,7 @@ export default function ExpressionForm () {
   return (
     <div>
       <form onSubmit={handleSubmit}>
-        <div style={{ width: '30%', margin: '0 auto' }}>
+        <div className={styles.wrapper}>
           <ConnectedTextField name='expression' />
         </div>
       </form>

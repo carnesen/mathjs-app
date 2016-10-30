@@ -2,7 +2,6 @@ import path from 'path'
 import webpack from 'webpack'
 
 const { NODE_ENV } = process.env
-const production = NODE_ENV === 'production'
 
 const plugins = [
   new webpack.DefinePlugin({
@@ -10,10 +9,8 @@ const plugins = [
   })
 ]
 
-let extension = '.js'
-if (production) {
+if (NODE_ENV === 'production') {
   plugins.push(new webpack.optimize.UglifyJsPlugin())
-  extension = '.min.js'
 }
 
 module.exports = [
@@ -25,13 +22,15 @@ module.exports = [
     ],
     output: {
       path: path.join(__dirname, 'dist'),
-      filename: `bundle${extension}`
+      filename: `bundle.js`
     },
     plugins,
     module: {
       loaders: [
-        { test: /.js$/, loader: 'babel-loader', exclude: /node_modules/ },
-        { test: /\.json$/, loader: 'json-loader' }
+        { test: /.js$/, loader: 'babel', exclude: /node_modules/ },
+        { test: /\.json$/, loader: 'json' },
+        { test: /\.css$/, loader: 'style!css?modules' },
+        { test: /\.(eot|svg|ttf|woff|woff2)/, loader: 'file' }
       ]
     }
   }

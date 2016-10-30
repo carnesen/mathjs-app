@@ -1,7 +1,7 @@
 import React from 'react'
 import { shallow } from 'enzyme'
 
-import ExpressionForm from '../expression-form'
+import ExpressionForm from '../expression-form/expression-form'
 
 describe('<ExpressionForm />', function () {
   it('renders', function () {

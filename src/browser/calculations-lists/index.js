@@ -3,25 +3,26 @@ import { connect } from 'react-redux'
 import { List, ListItem } from 'material-ui/List'
 import Divider from 'material-ui/Divider'
 
-import { expressionSlice, myCalculationsSlice } from './slices'
-import { allCalculationsSlice } from '../shared/slices'
+import { allCalculationsSlice } from '../../shared/slices'
+import { expressionSlice, myCalculationsSlice } from '../slices'
+import styles from './styles.css'
 
 export function CalculationsList ({calculations}) {
   return (
-    <div style={{ width: '45%' }}>
-      <List style={{ margin: '3%', padding: '3%' }}>{
+    <div className={styles.wrapper}>
+      <List>{
         calculations.map(({ id, expression, evaluatedExpression }) => {
           const primaryText = (
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-              <div>{expression}</div>
-              <div style={{ fontWeight: 'bolder', fontSize: '150%', margin: '3%' }}> → </div>
-              <div>{evaluatedExpression}</div>
+            <div className={styles.calculation}>
+              <span>{expression}</span>
+              <span className={styles.arrow} > → </span>
+              <span>{evaluatedExpression}</span>
             </div>
           )
           const clickHandler = () => expressionSlice.setValue(expression)
           return (
             <div key={id}>
-              <ListItem style={{ textAlign: 'center' }} primaryText={primaryText} onClick={clickHandler} />
+              <ListItem primaryText={primaryText} onClick={clickHandler} />
               <Divider />
             </div>
           )

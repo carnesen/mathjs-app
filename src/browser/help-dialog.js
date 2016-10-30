@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import Dialog from 'material-ui/Dialog'
 import FlatButton from 'material-ui/FlatButton'
 
+import pkg from '../../package.json'
 import { helpDialogSlice } from './slices'
 
 export default function HelpDialog () {
@@ -26,12 +27,13 @@ export default function HelpDialog () {
     }
     return (
       <Dialog {...props}>
+        <h4>{pkg.name}@{pkg.version}</h4>
         <p>
           Type an expression into the "Calculate" box and press enter to evaluate its value.
         </p>
         <p>
           Trigonometric functions, matrices, and complex numbers
-          <a style={{ textDecoration: 'none' }} href='http://mathjs.org/docs/'> are all supported</a>
+          <a href='http://mathjs.org/docs/'> are all supported</a>
         </p>
         <p>
           The column on the left lists calculations from across the web.

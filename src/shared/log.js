@@ -1,5 +1,5 @@
-import createLogger from '@carnesen/logger'
+import { Logger } from '@carnesen/logger'
 
-import { name } from '../../package.json'
+import pkg from '../../package.json'
 
-export default createLogger(name)
+export default new Logger(pkg.name)

@@ -1,0 +1,17 @@
+.wrapper {
+  width: 45%;
+  padding: 3%;
+}
+
+.arrow {
+  font-weight: bolder;
+  font-size: 150%;
+  margin: 3%;
+}
+
+.calculation {
+  font-size: 130%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

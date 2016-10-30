@@ -1,7 +1,7 @@
-import { start as startServer } from './server'
+import server from './server'
 import { start as startSimulator } from './simulator'
 
 export function start () {
-  startServer()
+  server.start()
   startSimulator()
 }
