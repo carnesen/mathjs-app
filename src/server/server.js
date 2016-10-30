@@ -23,7 +23,7 @@ iconNames.forEach(iconName =>
   router.get(`/${iconName}.svg`, (ctx, next) => {
     ctx.type = 'image/svg+xml'
     ctx.status = statuses('ok')
-    ctx.body = octicons[iconName].toSVG({ xmlns: "http://www.w3.org/2000/svg" })
+    ctx.body = octicons[iconName].toSVG({ xmlns: 'http://www.w3.org/2000/svg' })
     next()
   })
 )

@@ -3,8 +3,17 @@ import { connect } from 'react-redux'
 import Dialog from 'material-ui/Dialog'
 import FlatButton from 'material-ui/FlatButton'
 
-import pkg from '../../package.json'
-import { helpDialogSlice } from './slices'
+import pkg from '../../../package.json'
+import { helpDialogSlice } from '../slices'
+import styles from './styles.css'
+
+function Info ({children}) {
+  return (<p className={styles.info}>{children}</p>)
+}
+
+Info.propTypes = {
+  children: React.PropTypes.element.isRequired
+}
 
 export default function HelpDialog () {
   const actions = [
@@ -27,23 +36,23 @@ export default function HelpDialog () {
     }
     return (
       <Dialog {...props}>
-        <h4>{pkg.name}@{pkg.version}</h4>
-        <p>
+        <h4 className={styles.title}>{pkg.name}@{pkg.version}</h4>
+        <Info>
           Type an expression into the "Calculate" box and press enter to evaluate its value.
-        </p>
-        <p>
+        </Info>
+        <Info>
           Trigonometric functions, matrices, and complex numbers
           <a href='http://mathjs.org/docs/'> are all supported</a>
-        </p>
-        <p>
+        </Info>
+        <Info>
           The column on the left lists calculations from across the web.
-        </p>
-        <p>
+        </Info>
+        <Info>
           The column on the right lists the calculations submitted in this browser session.
-        </p>
-        <p>
+        </Info>
+        <Info>
           Click on any calculation to insert its expression into the "Calculate" box.
-        </p>
+        </Info>
       </Dialog>
     )
   }

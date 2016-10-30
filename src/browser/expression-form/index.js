@@ -6,6 +6,10 @@ import { calculate } from '../../shared/util'
 import { expressionSlice, myCalculationsSlice } from '../slices'
 import styles from './styles.css'
 
+const textStyle = {
+  fontSize: '150%'
+}
+
 export default function ExpressionForm () {
   function mapStateToProps () {
     return {
@@ -14,6 +18,9 @@ export default function ExpressionForm () {
       fullWidth: true,
       floatingLabelText: 'Calculate',
       hintText: '4+4',
+      inputStyle: textStyle,
+      hintStyle: textStyle,
+      floatingLabelStyle: textStyle,
       onChange: event => expressionSlice.setValue(event.target.value)
     }
   }
@@ -37,12 +44,10 @@ export default function ExpressionForm () {
   }
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <div className={styles.wrapper}>
-          <ConnectedTextField name='expression' />
-        </div>
-      </form>
-    </div>
+    <form onSubmit={handleSubmit}>
+      <div className={styles.wrapper}>
+        <ConnectedTextField name='expression' />
+      </div>
+    </form>
   )
 }

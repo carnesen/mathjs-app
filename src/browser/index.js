@@ -23,4 +23,4 @@ const App = () => (
   </MuiThemeProvider>
 )
 
-ReactDOM.render(<App className={ styles.app }/>, document.getElementById('app'))
+ReactDOM.render(<App className={styles.app} />, document.getElementById('app'))
