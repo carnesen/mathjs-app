@@ -30,7 +30,7 @@ module.exports = [
         { test: /.js$/, loader: 'babel', exclude: /node_modules/ },
         { test: /\.json$/, loader: 'json' },
         { test: /\.css$/, loader: 'style!css?modules' },
-        { test: /\.(eot|svg|ttf|woff|woff2)/, loader: 'file' }
+        { test: /\.(eot|svg|ttf|woff|woff2)$/, loader: 'file' }
       ]
     }
   }
