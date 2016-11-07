@@ -5,12 +5,12 @@
 
 .arrow {
   font-weight: bolder;
-  font-size: 150%;
+  font-size: 3vw;
   margin: 3%;
 }
 
 .calculation {
-  font-size: 130%;
+  font-size: 2vw;
   display: flex;
   align-items: center;
   justify-content: center;
