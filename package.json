@@ -9,7 +9,7 @@
     "build:browser:watch": "npm run build:browser -- --watch",
     "build:server": "cross-env BABEL_ENV=server babel src --out-dir lib --ignore *-test.js,browser",
     "build:server:watch": "npm run build:server -- --watch",
-    "build": "npm run clean && npm run build:server && npm run build:browser && npm run build:browser:min",
+    "build": "npm run clean && npm run build:server && npm run build:browser:min",
     "clean": "rimraf lib dist",
     "lint": "eslint src webpack.config.babel.js",
     "lint:fix": "npm run lint -- --fix",
