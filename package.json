@@ -72,6 +72,7 @@
     "whatwg-fetch": "1.0.0"
   },
   "files": [
+    "bin",
     "dist",
     "lib",
     "public",
