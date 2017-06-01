@@ -1,21 +1,11 @@
 # @carnesen/mathjs-app
-[![npm (scoped)](https://img.shields.io/npm/v/@carnesen/mathjs-app.svg)](https://www.npmjs.com/package/@carnesen/mathjs-app)
 [![Build Status](https://travis-ci.org/carnesen/mathjs-app.svg?branch=master)](https://travis-ci.org/carnesen/mathjs-app)
-[![Build status](https://ci.appveyor.com/api/projects/status/gflhw4y0nh6mdnio/branch/master?svg=true)](https://ci.appveyor.com/project/carnesen/mathjs-app/branch/master)
 
 ## Install
 Prerequisites:
   - [Node.js v6 or later](https://nodejs.org/en/download/)
   
-To run the application from its npm package:
-```
-npm install @carnesen/mathjs-app
-cd node_modules/@carnesen/mathjs-app
-npm install --production
-npm start
-```
-
-Alternatively, to run the application from the source code (requires [git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)):
+To run the application from the source code (requires [git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)):
 
 ```
 git clone https://github.com/carnesen/mathjs-app.git
@@ -25,7 +15,7 @@ npm build
 npm start
 ```
 
-At that point the application should be running and serving its browser application at [http://localhost:8080](http://localhost:8080)
+At that point the application should be running and serving its browser application at [http://localhost:8000](http://localhost:8000)
 
 ## How it works
 This full-stack application is written in JavaScript, html, and css. The source code lives in the [src](src) directory, divided into code that only runs server side, code that only runs in the browser app, and shared "isomorphic" code. The entry point for the server-side and browser applications are [src/server/index.js](src/server/index.js) and [src/browser/index.js](src/browser/index.js), respectively.
