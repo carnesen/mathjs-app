@@ -33,7 +33,7 @@
     "uuid": "2.0.3"
   },
   "devDependencies": {
-    "@carnesen/aws": "*",
+    "@carnesen/aws": "github:carnesen/aws#v0.0.4",
     "@carnesen/styles": "0.0.1",
     "babel-cli": "6.18.0",
     "babel-core": "6.18.2",
