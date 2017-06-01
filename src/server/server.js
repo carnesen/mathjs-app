@@ -10,7 +10,7 @@ import { isValidCalculation } from '../shared/util'
 
 import store from '../shared/store'
 
-const server = new WebServer()
+const server = new WebServer({port: 8000})
 
 const topDir = path.join(__dirname, '..', '..')
 server.serveStatic({ root: path.join(topDir, 'public') })
@@ -28,7 +28,7 @@ iconNames.forEach(iconName =>
   })
 )
 
-router.post('/api/calculation', async (ctx, next) => {
+router.post('/api/calculation', (ctx, next) => {
   const calculation = ctx.request.body
   if (isValidCalculation(calculation)) {
     ctx.status = statuses('no content')
@@ -37,6 +37,10 @@ router.post('/api/calculation', async (ctx, next) => {
   } else {
     throw new createError.BadRequest(`Bad calculation "${JSON.stringify(calculation)}"`)
   }
+})
+
+router.get('/health', ctx => {
+  ctx.body = 'OK'
 })
 
 server.sockets.on('connection', socket => {

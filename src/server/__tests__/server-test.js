@@ -17,6 +17,10 @@ describe('server', function () {
     return request(server.httpServer).get(`/${iconName}.svg`).expect(200)
   }))
 
+  it('GET /health responds 200', function () {
+    return request(server.httpServer).get('/health').expect(200)
+  })
+
   it('POST /api/calculation responds 400 if no expression', function () {
     return request(server.httpServer).post('/api/calculation').expect(400)
   })

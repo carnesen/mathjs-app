@@ -1,8 +1,7 @@
 {
-  "name": "@carnesen/mathjs-app",
+  "name": "mathjs",
   "description": "A toy calculator web app built on math.js",
-  "version": "0.0.3",
-  "main": "lib/server/index.js",
+  "private": true,
   "scripts": {
     "build:browser": "cross-env BABEL_ENV=browser webpack",
     "build:browser:min": "cross-env NODE_ENV=production npm run build:browser -- --bail",
@@ -17,10 +16,7 @@
     "start:watch": "nodemon --watch lib bin/www.js",
     "test": "npm run lint && npm run build && npm run test:server && npm run test:browser",
     "test:browser": "cross-env BABEL_ENV=browser NODE_ENV=test mocha --require .before-browser-tests.js src/browser/**/*-test.js src/shared/**/*-test.js",
-    "test:server": "cross-env BABEL_ENV=server NODE_ENV=test mocha --require .before-server-tests.js src/server/**/*-test.js src/shared/**/*-test.js",
-    "preversion": "npm test",
-    "version": "npm run build",
-    "postversion": "git push && git push --tags && npm publish"
+    "test:server": "cross-env BABEL_ENV=server NODE_ENV=test mocha --require .before-server-tests.js src/server/**/*-test.js src/shared/**/*-test.js"
   },
   "dependencies": {
     "@carnesen/checks": "0.0.2",
@@ -37,6 +33,7 @@
     "uuid": "2.0.3"
   },
   "devDependencies": {
+    "@carnesen/aws": "*",
     "@carnesen/styles": "0.0.1",
     "babel-cli": "6.18.0",
     "babel-core": "6.18.2",
@@ -70,25 +67,5 @@
     "supertest-as-promised": "4.0.2",
     "webpack": "1.13.3",
     "whatwg-fetch": "1.0.0"
-  },
-  "files": [
-    "bin",
-    "dist",
-    "lib",
-    "public",
-    "src"
-  ],
-  "author": {
-    "name": "Chris Arnesen",
-    "email": "chris.arnesen@gmail.com"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/carnesen/mathjs-app.git"
-  },
-  "bugs": {
-    "url": "https://github.com/carnesen/mathjs-app/issues"
-  },
-  "homepage": "https://github.com/carnesen/mathjs-app",
-  "license": "MIT"
+  }
 }
