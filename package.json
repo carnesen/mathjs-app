@@ -1,7 +1,7 @@
 {
   "name": "mathjs",
   "description": "A toy calculator web app built on math.js",
-  "private": true,
+  "version": "0.0.0-0",
   "scripts": {
     "build:browser": "cross-env BABEL_ENV=browser webpack",
     "build:browser:min": "cross-env NODE_ENV=production npm run build:browser -- --bail",
@@ -12,8 +12,8 @@
     "clean": "rimraf lib dist",
     "lint": "eslint src webpack.config.babel.js",
     "lint:fix": "npm run lint -- --fix",
-    "start": "node bin/www.js",
-    "start:watch": "nodemon --watch lib bin/www.js",
+    "start": "node server.js",
+    "start:watch": "nodemon --watch lib server.js",
     "test": "npm run lint && npm run build && npm run test:server && npm run test:browser",
     "test:browser": "cross-env BABEL_ENV=browser NODE_ENV=test mocha --require .before-browser-tests.js src/browser/**/*-test.js src/shared/**/*-test.js",
     "test:server": "cross-env BABEL_ENV=server NODE_ENV=test mocha --require .before-server-tests.js src/server/**/*-test.js src/shared/**/*-test.js"
@@ -33,7 +33,6 @@
     "uuid": "2.0.3"
   },
   "devDependencies": {
-    "@carnesen/aws": "github:carnesen/aws#v0.0.4",
     "@carnesen/styles": "0.0.1",
     "babel-cli": "6.18.0",
     "babel-core": "6.18.2",

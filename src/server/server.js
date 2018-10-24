@@ -10,7 +10,9 @@ import { isValidCalculation } from '../shared/util'
 
 import store from '../shared/store'
 
-const server = new WebServer({port: 8000})
+const port = Number(process.env.PORT) || 8000
+
+const server = new WebServer({port})
 
 const topDir = path.join(__dirname, '..', '..')
 server.serveStatic({ root: path.join(topDir, 'public') })

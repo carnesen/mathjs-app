@@ -1,7 +1,0 @@
-node_modules
-.travis.yml
-.eslintrc.json
-.git*
-README.md
-Dockerfile
-scripts
