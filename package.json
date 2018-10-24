@@ -2,6 +2,7 @@
   "name": "@carnesen/mathjs-app",
   "description": "A toy calculator web app built on math.js",
   "version": "0.0.4",
+  "main": "index.js",
   "scripts": {
     "build:browser": "cross-env BABEL_ENV=browser webpack",
     "build:browser:min": "cross-env NODE_ENV=production npm run build:browser -- --bail",
