@@ -5,7 +5,7 @@ Deployed on the web at [https://mathjs.carnesen.com/](https://mathjs.carnesen.co
 
 ## Install
 Prerequisites:
-- [Node.js version 8](https://nodejs.org/en/download/)
+- [Node.js version 10+](https://nodejs.org/en/download/)
   
 To run the application from the source code (requires [git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)):
 
