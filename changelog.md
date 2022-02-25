@@ -2,6 +2,8 @@
 
 ## Upcoming
 
+## carnesen-mathjs-app-2022.2.0 (2022-02-25)
+
 - Drop support for Node.js 14
 - Add support for Node.js 16
 - Use @carnesen/dev to release
