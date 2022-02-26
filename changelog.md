@@ -2,6 +2,10 @@
 
 ## Upcoming
 
+## carnesen-mathjs-app-2022.2.1 (2022-02-26)
+
+- Downgrade ESLint to fix a deployment issue
+
 ## carnesen-mathjs-app-2022.2.0 (2022-02-25)
 
 - Drop support for Node.js 14
